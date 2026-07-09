@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jackpot - Tier III</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0d0e12;
+            color: #ffffff;
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .nav-links {
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .nav-links a {
+            color: #f3c641;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a.active {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        /* Luxury dark gold container framing */
+        .container {
+            background: #111215;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 380px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+            border: 1px solid #332a15;
+        }
+
+        .header-desc {
+            font-size: 13px;
+            color: #92949c;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .tier-badge {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f3c641;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+            color: #ffffff;
+        }
+
+        .price-tag {
+            font-size: 14px;
+            font-weight: 700;
+            color: #f3c641;
+            margin-bottom: 24px;
+        }
+
+        .wheel-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 28px auto;
+        }
+
+        .pointer {
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 14px solid #f3c641;
+            z-index: 10;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Solid pure gold premium gradient trigger */
+        .spin-button {
+            background: linear-gradient(180deg, #ffe082 0%, #caa125 100%);
+            color: #000000;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: none;
+            border-radius: 25px;
+            width: 160px;
+            height: 46px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(243, 198, 65, 0.2);
+            outline: none;
+        }
+
+        .spin-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-links">
+        <a href="index.html">All Wheels</a> | 
+        <a href="tier1.html">Starter</a> | 
+        <a href="tier2.html">High Roller</a> |
+        <a href="tier3.html" class="active">Jackpot</a>
+    </div>
+
+    <div class="container">
+        <div class="header-desc">
+            $99 a spin. Maximum stakes. Land the central gold core to hit the grand software bundle distribution.
+        </div>
+
+        <div class="tier-badge">Tier III</div>
+        <h1>GRAND JACKPOT</h1>
+        <div class="price-tag">$99 · per spin</div>
+
+        <div class="wheel-container">
+            <div class="pointer"></div>
+            <canvas id="tier3Canvas" width="560" height="560"></canvas>
+        </div>
+
+        <button class="spin-button" id="tier3Btn" onclick="spinWheel()">SPIN</button>
+    </div>
+
+    <script src="theme.js"></script>
+    <script>
+        // High luxury gold, charcoal, and obsidian theme setup
+        const tier3Theme = {
+            outer:  ['#1e2025', '#2a2d34', '#40444f', '#111215'], // Obsidian shades
+            middle: ['#1e2025', '#2a2d34', '#40444f', '#111215'],
+            inner:  ['#f3c641', '#2a2d34', '#40444f', '#111215'], // Winning sector is bright gold
+            centerBall: '#f3c641',
+            borders: '#111215'
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initWheel('tier3Canvas', 'tier3Btn', tier3Theme);
+        });
+    </script>
+</body>
+</html>
+
