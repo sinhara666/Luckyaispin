@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky AI Spin Wheel - Hub</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0d0e12;
+            color: #ffffff;
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Top navigation matching tier1.html */
+        .nav-links {
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .nav-links a {
+            color: #f3c641;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a.active {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        /* Card Container Layout */
+        .container {
+            background: #15161c;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 380px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #22242d;
+        }
+
+        .header-desc {
+            font-size: 13px;
+            color: #8a8d98;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .tier-badge {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #6c6f7d;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .price-tag {
+            font-size: 14px;
+            font-weight: 700;
+            color: #f3c641;
+            margin-bottom: 24px;
+        }
+
+        /* Wheel Canvas Canvas Housing */
+        .wheel-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 28px auto;
+        }
+
+        .pointer {
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 14px solid #f3c641;
+            z-index: 10;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* CTA Interactive Button */
+        .spin-button {
+            background: linear-gradient(180deg, #f4c742 0%, #caa125 100%);
+            color: #000000;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: none;
+            border-radius: 25px;
+            width: 160px;
+            height: 46px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(244, 199, 66, 0.25);
+            outline: none;
+        }
+
+        .spin-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-links">
+        <a href="index.html" class="active">All Wheels</a> | 
+        <a href="tier1.html">Starter</a> | 
+        <a href="tier2.html">High Roller</a>
+    </div>
+
+    <div class="container">
+        <div class="header-desc">
+            Three tiers. Four sections per wheel. Land gold, spin again for free — anything else pops your prize vault.
+        </div>
+
+        <div class="tier-badge">Tier I</div>
+        <h1>STARTER</h1>
+        <div class="price-tag">$15 · Play</div>
+
+        <div class="wheel-container">
+            <div class="pointer"></div>
+            <canvas id="hubCanvas" width="560" height="560"></canvas>
+        </div>
+
+        <button class="spin-button" id="hubSpinBtn" onclick="spinWheel()">SPIN</button>
+    </div>
+
+    <script src="theme.js"></script>
+    <script>
+        // Colors for the Starter configuration on your homepage view
+        const defaultHomeTheme = {
+            outer:  ['#8be3be', '#ffcae4', '#ffe79a', '#a6c5f7'],
+            middle: ['#8be3be', '#ffcae4', '#ffe79a', '#a6c5f7'],
+            inner:  ['#f3c641', '#ffcae4', '#ffe79a', '#a6c5f7'],
+            centerBall: '#f4c742',
+            borders: '#15161c'
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initWheel('hubCanvas', 'hubSpinBtn', defaultHomeTheme);
+        });
+    </script>
+</body>
+</html>
+
