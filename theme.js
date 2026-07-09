@@ -1,4 +1,4 @@
-// theme.js - Universal Multi-Theme Engine
+// theme.js - The Universal Multi-Theme Engine
 
 let currentRotation = 0;
 let isSpinning = false;
@@ -10,7 +10,7 @@ function initWheel(canvasId, btnId, themeData) {
     const ctx = canvas.getContext('2d');
     const spinBtn = document.getElementById(btnId);
 
-    // Dynamic rendering layout using the theme color inputs passed by the page
+    // This handles the unique drawing layout for whichever page calls it
     function draw() {
         const centerX = canvas.width / 2;
         const centerY = canvas.height / 2;
@@ -21,29 +21,29 @@ function initWheel(canvasId, btnId, themeData) {
         ctx.rotate(currentRotation);
 
         const radii = [270, 185, 100]; 
-        const angleStep = Math.PI / 2;
-        const baseOffset = -Math.PI / 2;
+        const angleStep = Math.PI / 2; // 4 quadrants
+        const baseOffset = -Math.PI / 2; // Starts at 12 o'clock
 
-        // 1. Outer Ring
+        // 1. Outer Circle Ring
         for (let i = 0; i < 4; i++) {
             ctx.beginPath(); ctx.moveTo(0, 0);
             ctx.arc(0, 0, radii[0], baseOffset + (i * angleStep), baseOffset + ((i + 1) * angleStep));
             ctx.fillStyle = themeData.outer[i]; ctx.fill();
         }
-        // 2. Middle Ring
+        // 2. Middle Circle Ring
         for (let i = 0; i < 4; i++) {
             ctx.beginPath(); ctx.moveTo(0, 0);
             ctx.arc(0, 0, radii[1], baseOffset + (i * angleStep), baseOffset + ((i + 1) * angleStep));
             ctx.fillStyle = themeData.middle[i]; ctx.fill();
         }
-        // 3. Inner Ring (Features the Gold or custom accent segment at index 0)
+        // 3. Inner Circle Ring
         for (let i = 0; i < 4; i++) {
             ctx.beginPath(); ctx.moveTo(0, 0);
             ctx.arc(0, 0, radii[2], baseOffset + (i * angleStep), baseOffset + ((i + 1) * angleStep));
             ctx.fillStyle = themeData.inner[i]; ctx.fill();
         }
 
-        // Section Dividers using theme border selection
+        // Concentric outlines and sector divider lines
         ctx.strokeStyle = themeData.borders || '#15161c';
         ctx.lineWidth = 5;
         radii.forEach(r => { ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.stroke(); });
@@ -54,12 +54,13 @@ function initWheel(canvasId, btnId, themeData) {
             ctx.stroke();
         }
 
-        // Center Hub Accent Ball
+        // Center hub accent dot
         ctx.beginPath(); ctx.arc(0, 0, 32, 0, Math.PI * 2);
         ctx.fillStyle = themeData.centerBall || '#f4c742'; ctx.fill();
         ctx.restore();
     }
 
+    // This handles the smooth deceleration physics when you hit SPIN
     window.spinWheel = function() {
         if (isSpinning) return;
         isSpinning = true;
@@ -73,6 +74,8 @@ function initWheel(canvasId, btnId, themeData) {
         function animate(now) {
             const elapsed = now - startTimestamp;
             const progress = Math.min(elapsed / duration, 1);
+            
+            // Quad ease-out calculation for smooth spin braking
             const easeOutQuad = 1 - (1 - progress) * (1 - progress);
 
             currentRotation = currentRotation + (totalTargetRotation - currentRotation) * (easeOutQuad * progress);
@@ -91,4 +94,3 @@ function initWheel(canvasId, btnId, themeData) {
 
     draw();
 }
-
