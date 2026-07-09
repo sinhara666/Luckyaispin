@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucky AI Spin Wheel - Hub</title>
+    <title>Lucky AI Spin Wheel - Home</title>
     <style>
         * {
             box-sizing: border-box;
@@ -22,7 +22,6 @@
             padding: 20px;
         }
 
-        /* Top navigation matching tier1.html */
         .nav-links {
             margin-bottom: 24px;
             font-size: 14px;
@@ -40,7 +39,6 @@
             font-weight: bold;
         }
 
-        /* Card Container Layout */
         .container {
             background: #15161c;
             border-radius: 24px;
@@ -82,7 +80,6 @@
             margin-bottom: 24px;
         }
 
-        /* Wheel Canvas Canvas Housing */
         .wheel-container {
             position: relative;
             width: 280px;
@@ -109,7 +106,6 @@
             display: block;
         }
 
-        /* CTA Interactive Button */
         .spin-button {
             background: linear-gradient(180deg, #f4c742 0%, #caa125 100%);
             color: #000000;
@@ -158,8 +154,8 @@
 
     <script src="theme.js"></script>
     <script>
-        // Colors for the Starter configuration on your homepage view
-        const defaultHomeTheme = {
+        // Colors for this specific home page wheel
+        const homeTheme = {
             outer:  ['#8be3be', '#ffcae4', '#ffe79a', '#a6c5f7'],
             middle: ['#8be3be', '#ffcae4', '#ffe79a', '#a6c5f7'],
             inner:  ['#f3c641', '#ffcae4', '#ffe79a', '#a6c5f7'],
@@ -168,9 +164,8 @@
         };
 
         document.addEventListener("DOMContentLoaded", () => {
-            initWheel('hubCanvas', 'hubSpinBtn', defaultHomeTheme);
+            initWheel('hubCanvas', 'hubSpinBtn', homeTheme);
         });
     </script>
 </body>
 </html>
-
